@@ -9,7 +9,7 @@ loginscreen.innerHTML = `
       <input type="password" class="login-input" id="password" placeholder="Password" required />
       <button type="submit" class="login-button">Login</button>
     </form>
-    <p class="login-footer">Forgot your password? <a href="#">Reset it here</a>.</p>
+    <p class="login-footer">Forgot your password? <a href="#">womp womp</a>.</p>
   </div>
 `;
 

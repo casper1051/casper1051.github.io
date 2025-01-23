@@ -2,6 +2,8 @@ var loginscreen = document.getElementById("login-screen");
 loginscreen.innerHTML = `
 login-system-fail
 `;
+loginscreen.style.color="white";
+loginscreen.style.fontFamily="monospace";
 loginscreen.style.position = "absolute";
 loginscreen.style.width = "100vw";
 loginscreen.style.height = "100vh";

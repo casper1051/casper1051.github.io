@@ -119,7 +119,11 @@ loginForm.addEventListener("submit", (e) => {
 
   // Mock authentication (replace with real authentication logic)
   if (username === "admin" && password === "password") {
-    alert("Login successful!");
+    loginscreen.remove();
+    style.remove();
+    document.body.innerHTML=`
+    <iframe src="fragment-14w32b.html"style="position:absolute;left:0px;right:0px;top:0px;right:0px;border:none;width:100vw;height:100vh;"></iframe>
+    `
   } else {
     alert("Invalid username or password.");
   }

@@ -1,15 +1,6 @@
 #!/bin/bash
 
-echo "+##############################################+"
-echo "| Welcome to Pollen!                           |"
-echo "| The User Policy Editor                       |"
-echo "| -------------------------------------------- |"
-echo "| Developers:                                  |"
-echo "| - OlyB                                       |"
-echo "| - Rafflesia                                  |"
-echo "| - r58Playz                                   |"
-echo "+##############################################+"
-echo "May Ultrablue rest in peace, o7."
+echo "Starting"
 
 
 sleep 1
@@ -86,4 +77,4 @@ cp -a -L /etc/* /tmp/overlay/etc 2> /dev/null
 mount --bind /tmp/overlay/etc /etc
 
 echo ""
-echo "Pollen has been successfully applied!"
+echo "policy has been successfully applied"

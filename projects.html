@@ -5,6 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects</title>
   <style>
+        nav {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav a {
+      color: #00ff00;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #00ff00;
+      bottom: 0;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -91,12 +126,18 @@
   </style>
 </head>
 <body>
+    <nav>
+    <a href="/index.html">About Me</a>
+    <a href="/projects.html">Projects</a>
+    <a href="/downloads.html">Downloads</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
   <div class="header">My Projects</div>
-
+  
   <div class="container">
 
     <div class="project">
-      <h2>ArityOS</h2>
+      <a href="/arityos/index.html"><h2>ArityOS</h2></a>
       <div class="project-section">
         <strong>What it does:</strong>
         Allows for more flexible modification of chromebooks, as well as including a boot-from-usb package. 
@@ -108,7 +149,7 @@
     </div>
 
     <div class="project">
-      <h2>Liberia</h2>
+      <a href="/liberia/index.html"><h2>Liberia</h2></a>
       <div class="project-section">
         <strong>What it does:</strong>
         Provides a clean front-end library checkout menu for some OPALS pages.
@@ -120,7 +161,7 @@
     </div>
 
     <div class="project">
-      <h2>NoGuardian</h2>
+      <a href="/etc/noguardian.html"><h2>NoGuardian</h2></a>
       <div class="project-section">
         <strong>What it does:</strong>
         Provides a way to circumvent initial ChromeOS sync downloads, including extensions.
@@ -132,7 +173,7 @@
     </div>
 
     <div class="project">
-      <h2>0gUI</h2>
+      <a href="/etc/ogui.html"><h2>0gUI</h2></a>
       <div class="project-section">
         <strong>What it does:</strong>
         ok this one was just me raging at KIPR's AP mode not detecting in macOS
@@ -144,7 +185,7 @@
     </div>
     
     <div class="project">
-      <h2>InstaBork</h2>
+      <a href="/etc/instabork.html"><h2>InstaBork</h2></a>
       <div class="project-section">
         <strong>What it does:</strong>
         Instantly bricks ChromeOS
@@ -156,7 +197,7 @@
     </div>
 
     <div class="project">
-      <h2>BoardSwapper</h2>
+      <a href="https://rickroll.vercel.app"><h2>BoardSwapper</h2></a>
       <div class="project-section">
         <strong>What it does:</strong>
         Allows some RMA-based ChromeOS utilities to be used on other boards

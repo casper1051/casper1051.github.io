@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Courier New', Courier, monospace;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      color: #00ff00;
+      scroll-behavior: smooth;
+    }
+
+    .header {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 2.8em;
+      background: linear-gradient(
+        120deg,
+        #00ff00,
+        #00cc66,
+        #00aa44,
+        #00cc66,
+        #00ff00
+      );
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 1rem;
+    }
+
+    .project {
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 255, 0, 0.2);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      padding: 1.5rem 2rem;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .project h2 {
+      margin-top: 0;
+      font-size: 1.8em;
+      background: linear-gradient(
+        120deg,
+        #00ff00,
+        #00cc66,
+        #00aa44,
+        #00cc66,
+        #00ff00
+      );
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .project-section {
+      margin-top: 10px;
+    }
+
+    .project-section strong {
+      display: inline-block;
+      width: 140px;
+      color: #66ff66;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">My Projects</div>
+
+  <div class="container">
+
+    <div class="project">
+      <h2>ArityOS</h2>
+      <div class="project-section">
+        <strong>What it does:</strong>
+        Allows for more flexible modification of chromebooks, as well as including a boot-from-usb package. 
+      </div>
+      <div class="project-section">
+        <strong>How it works:</strong>
+        Uses a modified ChromeOS Developer Shim, as well as calling exec init from the first loader.
+      </div>
+    </div>
+
+    <div class="project">
+      <h2>Liberia</h2>
+      <div class="project-section">
+        <strong>What it does:</strong>
+        Provides a clean front-end library checkout menu for some OPALS pages.
+      </div>
+      <div class="project-section">
+        <strong>How it works:</strong>
+        Electron-based application using puppeteer to avoid API call intercepts on the back-end, a modded distro of ArityOS for the bootloader, paired with Openbox and autostart.
+      </div>
+    </div>
+
+    <div class="project">
+      <h2>NoGuardian</h2>
+      <div class="project-section">
+        <strong>What it does:</strong>
+        Provides a way to circumvent initial ChromeOS sync downloads, including extensions.
+      </div>
+      <div class="project-section">
+        <strong>How it works:</strong>
+        Fills up the internal eMMC in the Chromebook after a powerwash(to delete existing data), interrupting the sync cycle.
+      </div>
+    </div>
+
+    <div class="project">
+      <h2>0gUI</h2>
+      <div class="project-section">
+        <strong>What it does:</strong>
+        ok this one was just me raging at KIPR's AP mode not detecting in macOS
+      </div>
+      <div class="project-section">
+        <strong>How it works:</strong>
+        sudo rm /usr/local/bin/botui
+      </div>
+    </div>
+    
+    <div class="project">
+      <h2>InstaBork</h2>
+      <div class="project-section">
+        <strong>What it does:</strong>
+        Instantly bricks ChromeOS
+      </div>
+      <div class="project-section">
+        <strong>How it works:</strong>
+        Creates a while true reload loop, instantly freezing the computer until it is force shut down.
+      </div>
+    </div>
+
+    <div class="project">
+      <h2>BoardSwapper</h2>
+      <div class="project-section">
+        <strong>What it does:</strong>
+        Allows some RMA-based ChromeOS utilities to be used on other boards
+      </div>
+      <div class="project-section">
+        <strong>How it works:</strong>
+        In most cases, only the kernel (on part 2) is board-specific. If we switch out the kernel with a new one, that board will see the shim as valid. This means a dedede shim with an octopus kernel will boot.
+      </div>
+    </div>
+
+    <!--div class="project">
+      <h2>SkidShield</h2>
+      <div class="project-section">
+        <strong>What it does:</strong>
+        Stops random kids from logging onto exposed systems
+      </div>
+      <div class="project-section">
+        <strong>How it works:</strong>
+        [Requested to be redacted]
+      </div>
+    </div-->
+
+  </div>
+</body>
+</html>
+

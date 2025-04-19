@@ -12,8 +12,26 @@
       font-family: 'Courier New', Courier, monospace;
       background: url('background.png') no-repeat center center fixed;
       background-size: cover;
-      overflow: hidden;
+      overflow-x: hidden;
       color: #00ff00;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.5em 1em;
+      border-radius: 10px;
+    }
+
+    nav a {
+      color: #00ff00;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
     }
 
     .overlay {
@@ -23,22 +41,32 @@
       border: 1px solid rgba(0, 255, 0, 0.2);
       padding: 2rem;
       width: 90%;
-      max-width: 600px;
-      margin: 10% auto;
+      max-width: 80vw;
+      margin: 100px auto;
       animation: fadeIn 2s ease-out;
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
     }
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.5em;
-      animation: floatIn 1.5s ease-out;
-    }
-
-    p {
+    h1, p {
       font-size: 1.1em;
       line-height: 1.6;
       animation: fadeInText 2.5s ease-out;
+      background: linear-gradient(
+        120deg,
+        #00ff00 0%,
+        #00cc66 25%,
+        #00aa44 50%,
+        #00cc66 75%,
+        #00ff00 100%
+      );
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 10s linear infinite;
+    }
+
+    h1 {
+      font-size: 2.5em;
     }
 
     @keyframes fadeIn {
@@ -46,24 +74,52 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes floatIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @keyframes fadeInText {
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <h1>Hello, I'm [Your Name]</h1>
+  <nav>
+    <a href="#section1">About</a>
+    <a href="#section2">Projects</a>
+    <a href="#section3">Contact</a>
+  </nav>
+
+  <div class="overlay" id="section1">
+    <h1>Hello, I'm Casper1051</h1>
     <p>
       Welcome to my digital realm. I'm a curious developer, hardware tinkerer, and tech explorer.  
-      Whether it's coding up software, building robots, or modifying systems just because I can — I'm always digging deeper.  
-      If it runs on electrons and logic, I'm probably breaking and fixing it.
+      If it runs on electrons and logic, I'm probably breaking and fixing* it.
+    </p>
+  </div>
+
+  <div class="overlay" id="section2">
+    <h1>Projects</h1>
+    <p>
+      From building robots to modding Minecraft, I dive deep into tech. 
+      Check out the <a href="/projects">projects</a> page for more details.
+      Some of my more featured projects are:<br>
+      <br>
+      <a href="/arityos/index.html">ArityOS: Fully functional ChromeOS RMA Mod with GRUB emulator</a><br>
+      <a href="/vmc/index.html">NoGuardian: Using Crosh to disable downloading Chromebook Extensions</a><br>
+      <a href="/liberia/index.html">Liberia: Automated checkout system. No API needed, works with OPALS</a><br>
+      <a href="/noui/index.html">0gUI: Alternative interface for the Kipr Wombat controller</a><br>
+      <a href="/brickme/index.html">InstaBork: Freeze any chromebook</a><br>
+      
+    </p>
+  </div>
+
+  <div class="overlay" id="section3">
+    <h1>Contact</h1>
+    <p>
+      Usually if you want to contact me, you are likely someone who has my discord or e-mail. If not, find me at High Jung Institute of Technology.
     </p>
   </div>
 </body>

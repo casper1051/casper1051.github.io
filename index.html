@@ -1,12 +1,70 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Reflection</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <div id="login-screen"></div>
-    <script src="fragment-14w32b.js"></script>
-    <script src="login-authn.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Courier New', Courier, monospace;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      color: #00ff00;
+    }
+
+    .overlay {
+      backdrop-filter: blur(6px);
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 0, 0.2);
+      padding: 2rem;
+      width: 90%;
+      max-width: 600px;
+      margin: 10% auto;
+      animation: fadeIn 2s ease-out;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+      animation: floatIn 1.5s ease-out;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      animation: fadeInText 2.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>Hello, I'm [Your Name]</h1>
+    <p>
+      Welcome to my digital realm. I'm a curious developer, hardware tinkerer, and tech explorer.  
+      Whether it's coding up software, building robots, or modifying systems just because I can — I'm always digging deeper.  
+      If it runs on electrons and logic, I'm probably breaking and fixing it.
+    </p>
+  </div>
+</body>
 </html>

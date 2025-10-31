@@ -256,17 +256,47 @@
     else input.removeEventListener('input', render);
   });
 
-  copyBtn.addEventListener('click', async () => {
-    const html = outCode.innerHTML;
-    try {
-      await navigator.clipboard.writeText(html);
-      copyBtn.textContent = 'Copied!';
-      setTimeout(()=> copyBtn.textContent = 'Copy HTML', 1000);
-    } catch {
-      copyBtn.textContent = 'Copy failed';
-      setTimeout(()=> copyBtn.textContent = 'Copy HTML', 1000);
-    }
-  });
+copyBtn.addEventListener('click', async () => {
+  // Generate full HTML page
+  const htmlDoc = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Highlighted Code</title>
+<style>
+  :root{
+    --bg: #000;
+    --text: #ddd;
+    --paren-brown: #8b5a2b;
+    --func-blue: #73d0ff;
+    --str-num-green: #7fff7f;
+    --comment-orange: #ff8c42;
+  }
+  body { background: var(--bg); color: var(--text); font-family:"Courier New", monospace; margin:20px; }
+  .paren{color:var(--paren-brown);font-weight:600}
+  .func{color:var(--func-blue);font-weight:700}
+  .str{color:var(--str-num-green)}
+  .num{color:var(--str-num-green)}
+  .sentence{color:var(--str-num-green)}
+  .comment{color:var(--comment-orange);font-style:italic}
+  pre { white-space: pre; font-family:"Courier New", monospace; font-size:13px; }
+</style>
+</head>
+<body>
+<pre>${outCode.innerHTML}</pre>
+</body>
+</html>`;
+
+  try {
+    await navigator.clipboard.writeText(htmlDoc);
+    copyBtn.textContent = 'Copied!';
+    setTimeout(()=> copyBtn.textContent = 'Copy HTML', 1000);
+  } catch {
+    copyBtn.textContent = 'Copy failed';
+    setTimeout(()=> copyBtn.textContent = 'Copy HTML', 1000);
+  }
+});
+
 
   input.value = `; Example — Simply Scheme sentence
 (define (convert-seconds total)

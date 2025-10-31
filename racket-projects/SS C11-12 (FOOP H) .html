@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Highlighted Code</title>
+<style>
+  :root{
+    --bg: #000;
+    --text: #ddd;
+    --paren-brown: #8b5a2b;
+    --func-blue: #73d0ff;
+    --str-num-green: #7fff7f;
+    --comment-orange: #ff8c42;
+  }
+  body { background: var(--bg); color: var(--text); font-family:"Courier New", monospace; margin:20px; }
+  .paren{color:var(--paren-brown);font-weight:600}
+  .func{color:var(--func-blue);font-weight:700}
+  .str{color:var(--str-num-green)}
+  .num{color:var(--str-num-green)}
+  .sentence{color:var(--str-num-green)}
+  .comment{color:var(--comment-orange);font-style:italic}
+  pre { white-space: pre; font-family:"Courier New", monospace; font-size:13px; }
+</style>
+</head>
+<body>
+<pre><span class="comment">;11.7 Write a procedure copies that takes a number and a word as arguments and returns a sentence containing that many copies of the given word:</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">copies</span> num wd<span class="paren">]</span>
+  <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">&lt;</span> num <span class="num">1</span><span class="paren">]</span> <span class="sentence">'[]</span> <span class="paren">[</span><span class="func">se</span> wd <span class="paren">[</span><span class="func">copies</span> <span class="paren">[</span><span class="func">-</span> num <span class="num">1</span><span class="paren">]</span> wd<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+<span class="paren">]</span>
+
+<span class="paren">(</span><span class="func">copies</span> <span class="num">8</span> 'spam<span class="paren">)</span>
+<span class="comment">;'(spam spam spam spam spam spam spam spam)</span>
+
+
+
+
+
+<span class="comment">;12.13 Write a new version of the describe-time procedure from Exercise 6.14.  Instead of returning a decimal number, it should behave like this:</span>
+<span class="paren">[</span><span class="func">define</span> units <span class="sentence">'[1 60 3600 86400 604800 31536000 3153600000]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> labels <span class="sentence">'[unknown seconds minutes hours days weeks years centuries]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> labels-single <span class="sentence">'[unknown second minute hour day week year century]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">mod</span> a b<span class="paren">]</span> <span class="paren">[</span><span class="func">modulo</span> a b<span class="paren">]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">unit</span> x<span class="paren">]</span> <span class="paren">[</span><span class="func">item</span> x units<span class="paren">]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">label</span> x<span class="paren">]</span> <span class="paren">[</span><span class="func">item</span> x labels<span class="paren">]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">clabel</span> x g<span class="paren">]</span> <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">=</span> g <span class="num">1</span><span class="paren">]</span> <span class="paren">[</span><span class="func">item</span> x labels-single<span class="paren">]</span> <span class="paren">[</span><span class="func">label</span> x<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">remaining-units</span> t u<span class="paren">]</span> <span class="paren">[</span><span class="func">mod</span> t <span class="paren">[</span><span class="func">item</span> u units<span class="paren">]</span><span class="paren">]</span> <span class="paren">]</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">max-of-one-unit</span> t u<span class="paren">]</span>
+  <span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">h</span> e r<span class="paren">]</span>
+    <span class="paren">[</span><span class="func">floor</span> <span class="paren">[</span><span class="func">/</span> e <span class="paren">[</span><span class="func">unit</span> r<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+  <span class="paren">]</span>
+  <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">&lt;</span> t <span class="num">0</span><span class="paren">]</span> <span class="num">0</span>
+      <span class="paren">[</span><span class="func">se</span> <span class="paren">[</span><span class="func">h</span> t u<span class="paren">]</span> <span class="paren">[</span><span class="func">label</span> u<span class="paren">]</span><span class="paren">]</span>
+  <span class="paren">]</span>
+  <span class="paren">[</span><span class="func">h</span> t u<span class="paren">]</span>
+<span class="paren">]</span>
+
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">describe-time</span> t u<span class="paren">]</span>
+  <span class="comment">;variable 'u' is the index of the accessed unit and its corresponding label and single-lable item. You could add custom time units that way</span>
+  <span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">k</span><span class="paren">]</span>
+    <span class="paren">[</span><span class="func">display</span> <span class="paren">[</span><span class="func">max-of-one-unit</span> t u<span class="paren">]</span><span class="paren">]</span> <span class="paren">[</span><span class="func">display</span> <span class="str">" "</span><span class="paren">]</span>
+    <span class="paren">[</span><span class="func">show</span> <span class="paren">[</span><span class="func">clabel</span> <span class="paren">[</span><span class="func">+</span> <span class="num">1</span> u<span class="paren">]</span> <span class="paren">[</span><span class="func">max-of-one-unit</span> t u<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+    <span class="paren">[</span><span class="func">describe-time</span> <span class="paren">[</span><span class="func">remaining-units</span> t u<span class="paren">]</span> <span class="paren">[</span><span class="func">-</span> u <span class="num">1</span><span class="paren">]</span><span class="paren">]</span>
+  <span class="paren">]</span>
+  <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">=</span> u <span class="num">0</span><span class="paren">]</span> <span class="num">-1</span> <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">&lt;</span> t <span class="num">0</span><span class="paren">]</span> <span class="num">-2</span>
+    <span class="paren">[</span><span class="func">k</span><span class="paren">]</span>
+  <span class="paren">]</span><span class="paren">]</span>
+<span class="paren">]</span>
+<span class="paren">[</span><span class="func">describe-time</span> <span class="num">4967189641</span> <span class="num">7</span><span class="paren">]</span>
+
+
+
+
+<span class="comment">;12.12 Write a procedure arabic which converts Roman numerals into Arabic numerals:</span>
+
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">clean-romans</span> l i v<span class="paren">]</span>
+    <span class="paren">[</span><span class="func">cond</span>
+      <span class="paren">[</span><span class="paren">[</span><span class="func">=</span> <span class="paren">[</span><span class="func">count</span> l<span class="paren">]</span> i<span class="paren">]</span>
+       <span class="paren">[</span><span class="func">+</span> v <span class="paren">[</span><span class="func">roman-value</span> <span class="paren">[</span><span class="func">item</span> i l<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+      <span class="paren">[</span><span class="func">else</span>
+       <span class="paren">[</span><span class="func">cond</span> <span class="paren">[</span><span class="paren">[</span><span class="func">&lt;</span> <span class="paren">[</span><span class="func">roman-value</span> <span class="paren">[</span><span class="func">item</span> i l<span class="paren">]</span><span class="paren">]</span> <span class="paren">[</span><span class="func">roman-value</span> <span class="paren">[</span><span class="func">item</span> <span class="paren">[</span><span class="func">+</span> i <span class="num">1</span><span class="paren">]</span> l<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+              <span class="paren">[</span><span class="func">clean-romans</span> l <span class="paren">[</span><span class="func">+</span> i <span class="num">2</span><span class="paren">]</span> <span class="paren">[</span><span class="func">+</span> v <span class="paren">[</span><span class="func">-</span> <span class="paren">[</span><span class="func">roman-value</span> <span class="paren">[</span><span class="func">item</span> <span class="paren">[</span><span class="func">+</span> i <span class="num">1</span><span class="paren">]</span> l<span class="paren">]</span><span class="paren">]</span> <span class="paren">[</span><span class="func">roman-value</span> <span class="paren">[</span><span class="func">item</span> i l<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+             <span class="paren">[</span><span class="func">else</span>
+              <span class="paren">[</span><span class="func">clean-romans</span> l <span class="paren">[</span><span class="func">+</span> i <span class="num">1</span><span class="paren">]</span> <span class="paren">[</span><span class="func">+</span> v <span class="paren">[</span><span class="func">roman-value</span> <span class="paren">[</span><span class="func">item</span> i l<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+<span class="paren">[</span><span class="func">clean-romans</span> 'mcmlxxi <span class="num">1</span> <span class="num">0</span><span class="paren">]</span>
+
+
+<span class="paren">(</span><span class="func">arabic</span> 'mcmlxxi<span class="paren">)</span>
+<span class="comment">;1971</span>
+
+<span class="paren">(</span><span class="func">arabic</span> 'mlxvi<span class="paren">)</span>
+<span class="comment">;1066</span>
+
+
+
+
+<span class="comment">;12.11 Write the procedure count, which returns the number of words in a sentence or the number of letters in a word.</span>
+
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">count-v2</span> inst seq<span class="paren">]</span>
+  <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">empty?</span> seq<span class="paren">]</span> <span class="num">0</span> <span class="paren">[</span><span class="func">+</span> <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">eq?</span> inst <span class="paren">[</span><span class="func">first</span> seq<span class="paren">]</span><span class="paren">]</span> <span class="num">1</span> <span class="num">0</span><span class="paren">]</span> <span class="paren">[</span><span class="func">count-v2</span> inst <span class="paren">[</span><span class="func">bf</span> seq<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+<span class="paren">]</span>
+
+
+
+
+<span class="comment">; 12.9 Write a procedure real-words that takes a sentence as its argument and returns all the "real" words of the sentence, using the same rule as the real-word? procedure from Chapter 1.</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">real-words</span> inst<span class="paren">]</span>
+  <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">empty?</span> inst<span class="paren">]</span> <span class="sentence">'[]</span> <span class="paren">[</span><span class="func">se</span> <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">member?</span> <span class="paren">[</span><span class="func">first</span> inst<span class="paren">]</span> <span class="sentence">'(a the an in of and for to with)</span><span class="paren">]</span> <span class="paren">[</span><span class="func">first</span> inst<span class="paren">]</span> <span class="sentence">'[]</span><span class="paren">]</span> <span class="paren">[</span><span class="func">real-words</span> <span class="paren">[</span><span class="func">bf</span> inst<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+<span class="paren">]</span>
+
+<span class="comment">;hey that looks like it can be similar to keep. lemme see if it can be made into keep.</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">artificial-keep</span> stat inst<span class="paren">]</span>
+  <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">empty?</span> inst<span class="paren">]</span> <span class="sentence">'[]</span> <span class="paren">[</span><span class="func">se</span> <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">stat</span> <span class="paren">[</span><span class="func">first</span> inst<span class="paren">]</span><span class="paren">]</span> <span class="paren">[</span><span class="func">first</span> inst<span class="paren">]</span> <span class="sentence">'[]</span><span class="paren">]</span> <span class="paren">[</span><span class="func">artificial-keep</span> stat <span class="paren">[</span><span class="func">bf</span> inst<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+<span class="paren">]</span>
+<span class="comment">;seems to work fine.</span>
+
+
+
+
+<span class="comment">;12.6 Redo exercise 8.11 using recursion.</span>
+<span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">gpa-v3</span> g<span class="paren">]</span>
+  <span class="paren">[</span><span class="func">define</span> <span class="paren">[</span><span class="func">recursive-helper</span> g<span class="paren">]</span>
+    <span class="paren">[</span><span class="func">if</span> <span class="paren">[</span><span class="func">empty?</span> g<span class="paren">]</span> <span class="num">0</span> <span class="paren">[</span><span class="func">+</span> <span class="paren">[</span><span class="func">translate</span> <span class="paren">[</span><span class="func">first</span> g<span class="paren">]</span><span class="paren">]</span> <span class="paren">[</span><span class="func">recursive-helper</span> <span class="paren">[</span><span class="func">bf</span> g<span class="paren">]</span><span class="paren">]</span><span class="paren">]</span><span class="paren">]</span>
+  <span class="paren">]</span>
+  <span class="paren">[</span><span class="func">*</span> <span class="paren">[</span><span class="func">/</span> <span class="paren">[</span><span class="func">round</span> <span class="paren">[</span><span class="func">*</span> <span class="paren">[</span><span class="func">/</span> <span class="paren">[</span><span class="func">recursive-helper</span> g<span class="paren">]</span> <span class="paren">[</span><span class="func">count</span> g<span class="paren">]</span><span class="paren">]</span> <span class="num">100</span><span class="paren">]</span><span class="paren">]</span> <span class="num">100</span><span class="paren">]</span> <span class="num">1</span>.<span class="num">0</span><span class="paren">]</span> <span class="comment">;*1.0 for fraction -&gt; decimal</span>
+<span class="paren">]</span>
+</pre>
+</body>
+</html>

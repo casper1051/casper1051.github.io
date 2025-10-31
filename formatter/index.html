@@ -1,1 +1,286 @@
-#
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lisp Highlighter — Simply Scheme Compatible</title>
+<style>
+  :root{
+    --bg: #000;
+    --text: #ddd;
+    --paren-brown: #8b5a2b;
+    --func-blue: #73d0ff;
+    --str-num-green: #7fff7f;
+    --comment-orange: #ff8c42;
+  }
+
+  html,body{
+    height:100%;
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Courier New", Courier, monospace;
+  }
+
+  .wrap{
+    max-width:980px;
+    margin:24px auto;
+    padding:18px;
+  }
+
+  h1{
+    font-size:18px;
+    margin:0 0 10px 0;
+    color:var(--text);
+  }
+
+  textarea{
+    width:100%;
+    height:220px;
+    background:#000;
+    border:1px solid #222;
+    color:var(--text);
+    padding:12px;
+    border-radius:6px;
+    resize:vertical;
+    font-family:"Courier New", Courier, monospace;
+    font-size:13px;
+    line-height:1.35;
+    white-space:pre;
+  }
+
+  .controls{
+    margin-top:10px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+
+  button{
+    background:#111;
+    border:1px solid #222;
+    color:var(--text);
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+  }
+
+  button:hover{filter:brightness(1.2)}
+
+  pre.output{
+    margin-top:14px;
+    background:var(--bg);
+    border-radius:6px;
+    padding:14px;
+    overflow:auto;
+    white-space:pre;
+    font-family:"Courier New", Courier, monospace;
+    font-size:13px;
+    border:1px solid #111;
+  }
+
+  /* Coloring */
+  .paren{color:var(--paren-brown);font-weight:600}
+  .func{color:var(--func-blue);font-weight:700}
+  .str{color:var(--str-num-green)}
+  .num{color:var(--str-num-green)}
+  .sentence{color:var(--str-num-green)}
+  .comment{color:var(--comment-orange);font-style:italic}
+
+  pre.output code {white-space: pre; display: block}
+  .hint {color:#888;font-size:12px;margin-left:4px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Lisp / Scheme / Simply Scheme Highlighter</h1>
+
+    <textarea id="input" placeholder="Paste Lisp / Scheme / Simply Scheme code here..."></textarea>
+
+    <div class="controls">
+      <button id="doHighlight">Highlight</button>
+      <button id="autoToggle">Auto: off</button>
+      <button id="copyHtml">Copy HTML</button>
+      <span class="hint">Preserves spacing — recolors only.</span>
+    </div>
+
+    <pre class="output" id="out"><code></code></pre>
+  </div>
+
+<script>
+(() => {
+  const input = document.getElementById('input');
+  const outCode = document.querySelector('#out code');
+  const btn = document.getElementById('doHighlight');
+  const autoBtn = document.getElementById('autoToggle');
+  const copyBtn = document.getElementById('copyHtml');
+
+  const markers = [];
+  const makeMarker = html => {
+    const id = markers.length;
+    markers.push(html);
+    return `@@MARKER_${id}@@`;
+  };
+  const restoreMarkers = s => s.replace(/@@MARKER_(\d+)@@/g, (_, n) => markers[+n] ?? '');
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  function highlightold(code) {
+    markers.length = 0;
+    let src = esc(code);
+
+    // Protect strings
+    src = src.replace(/"(?:\\.|[^"\\])*"/g, m =>
+      makeMarker(`<span class="str">${m}</span>`));
+
+    // Protect comments
+    src = src.replace(/;[^\n]*/g, m =>
+      makeMarker(`<span class="comment">${m}</span>`));
+
+    // Highlight Simply Scheme sentence syntax:  '[ ... ] or '( ... )
+    src = src.replace(/'[\[\(][^\]\)]*[\]\)]/g, m =>
+      `<span class="sentence">${m}</span>`);
+
+    // Numbers
+    src = src.replace(/\b-?\d+\b/g, m =>
+      `<span class="num">${m}</span>`);
+
+    // Function calls (first symbol after ( or [)
+    src = src.replace(/([\(\[])(\s*)([^\s\(\)\[\]";]+)/g,
+      (m, open, spaces, name) =>
+        `<span class="paren">${open}</span>${spaces}<span class="func">${name}</span>`);
+
+    // Remaining parens/brackets
+    src = src.replace(/[\(\)\[\]]/g, m =>
+      `<span class="paren">${m}</span>`);
+
+    return restoreMarkers(src);
+  }
+  function highlight(code) {
+  const out = [];
+  const len = code.length;
+  let i = 0;
+
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  while (i < len) {
+    const c = code[i];
+
+    // --- comment
+    if (c === ';') {
+      let start = i;
+      while (i < len && code[i] !== '\n') i++;
+      out.push(`<span class="comment">${esc(code.slice(start,i))}</span>`);
+      continue;
+    }
+
+    // --- string
+    if (c === '"') {
+      let start = i;
+      i++;
+      while (i < len) {
+        if (code[i] === '"' && code[i-1] !== '\\') { i++; break; }
+        i++;
+      }
+      out.push(`<span class="str">${esc(code.slice(start,i))}</span>`);
+      continue;
+    }
+
+    // --- Simply Scheme sentence syntax: '[...] or '(...)
+    if (c === '\'' && (code[i+1] === '[' || code[i+1] === '(')) {
+      const open = code[i+1], close = open === '[' ? ']' : ')';
+      let start = i;
+      i += 2; // skip quote + open
+      let depth = 0;
+      while (i < len) {
+        if (code[i] === open) depth++;
+        else if (code[i] === close) {
+          if (depth === 0) { i++; break; }
+          depth--;
+        }
+        i++;
+      }
+      out.push(`<span class="sentence">${esc(code.slice(start,i))}</span>`);
+      continue;
+    }
+
+    // --- parentheses/brackets
+    if ('()[]'.includes(c)) {
+      out.push(`<span class="paren">${esc(c)}</span>`);
+      i++;
+      continue;
+    }
+
+    // --- numbers
+    const numMatch = code.slice(i).match(/^-?\d+\b/);
+    if (numMatch) {
+      out.push(`<span class="num">${numMatch[0]}</span>`);
+      i += numMatch[0].length;
+      continue;
+    }
+
+    // --- function call after ( or [
+    if (out.length && out[out.length-1].endsWith('>')) {
+      const last = out[out.length-1];
+      const parenMatch = last.match(/<span class="paren">([\(\[])</);
+      if (parenMatch) {
+        // scan for function name
+        const fnMatch = code.slice(i).match(/^\s*([^\s\(\)\[\]";]+)/);
+        if (fnMatch) {
+          out.push(code.slice(i,i+fnMatch[0].length).replace(/([^\s]+)/, `<span class="func">$1</span>`));
+          i += fnMatch[0].length;
+          continue;
+        }
+      }
+    }
+
+    // --- normal character
+    out.push(esc(c));
+    i++;
+  }
+
+  return out.join('');
+}
+
+
+  function render() {
+    outCode.innerHTML = highlight(input.value);
+  }
+
+  btn.addEventListener('click', render);
+
+  let auto = false;
+  autoBtn.addEventListener('click', () => {
+    auto = !auto;
+    autoBtn.textContent = `Auto: ${auto ? 'on' : 'off'}`;
+    if (auto) input.addEventListener('input', render);
+    else input.removeEventListener('input', render);
+  });
+
+  copyBtn.addEventListener('click', async () => {
+    const html = outCode.innerHTML;
+    try {
+      await navigator.clipboard.writeText(html);
+      copyBtn.textContent = 'Copied!';
+      setTimeout(()=> copyBtn.textContent = 'Copy HTML', 1000);
+    } catch {
+      copyBtn.textContent = 'Copy failed';
+      setTimeout(()=> copyBtn.textContent = 'Copy HTML', 1000);
+    }
+  });
+
+  input.value = `; Example — Simply Scheme sentence
+(define (convert-seconds total)
+  ; 'sentence of units
+  '[unknown seconds minutes hours days weeks years centuries])
+
+(display "Result: ")
+(display (convert-seconds 120))
+(newline)
+`;
+
+  render();
+})();
+</script>
+</body>
+</html>
+

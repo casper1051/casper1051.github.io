@@ -1,2 +1,3 @@
 # casper1051.github.io
-e
+my site
+i'll add a proper readme someday

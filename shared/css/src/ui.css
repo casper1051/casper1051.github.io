@@ -1,0 +1,82 @@
+.centerbox {
+  display: flex;
+  justify-content: center;
+}
+
+.title{
+    margin-top: 40vh;
+}
+
+.lower{
+    margin-top: 10vh;
+}
+
+
+.nextpage{
+    margin-top: 100vh;
+}
+
+.halfpage{
+    margin-top: 50vh;
+}
+
+.inline{
+  display:inline-block;
+}
+
+.linedown{
+  margin-top: 3vh;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.highish{
+  margin-top: -5vh;
+}
+
+.lowish{
+  margin-top: 2.5vh;
+}
+.smalltext{
+  font-size: 8px;
+}
+.badge{
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 16vw;
+  overflow-x:auto;
+}
+
+.spaced{
+  gap: 12px;
+}
+
+.largefont{
+  font-size: 40px;
+}
+.description{
+  color: rgb(123, 123, 123);
+}
+.symbol-inner{
+  font-size: 18px;
+  color: white;
+}
+
+
+
+
+.title {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  z-index: 1;
+}

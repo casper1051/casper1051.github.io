@@ -1,0 +1,209 @@
+/* Source: ./src/main.css */
+body {
+  margin: 0;
+  background: #000000;
+  font-family: "Inter";
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Source: ./src/meteor_animation.css */
+
+
+#meteorCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.glow{
+  all: unset;
+  position: relative;
+  padding: 12px 24px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(#000, #000), 
+    linear-gradient(90deg, #00ffff, #00ff7b, #00ffff);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 200% 100%;
+  background-position: 0% 0%, 0% 0%;
+  transition: box-shadow 0.3s ease;
+}
+.glow:hover {
+  animation: colorshift 3s linear infinite;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 1);
+}
+@keyframes colorshift {
+  from {
+    background-position: 0% 0%, 0% 0%;
+  }
+  to {
+    background-position: 0% 0%, 200% 0%;
+  }
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/shared/css/font/inter.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* Source: ./src/title.css */
+.animated-title {
+  perspective: 800px;
+  /*font-size: 4rem;*/
+}
+
+.animated-title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-100px) rotateX(90deg);
+  transform-origin: top;
+
+  animation: fall 0.8s ease forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.animated-title-faster {
+  perspective: 800px;
+  /*font-size: 4rem;*/
+}
+
+.animated-title-faster span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-100px) rotateX(90deg);
+  transform-origin: top;
+
+  animation: fall 0.8s ease forwards;
+  animation-delay: calc(var(--i) * 0.01694s);
+}
+
+.animated-title-slower {
+  perspective: 800px;
+  /*font-size: 4rem;*/
+}
+
+.lower-desc{
+  color: rgb(78, 78, 78);
+}
+
+.animated-title-slower span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-100px) rotateX(90deg);
+  transform-origin: top;
+
+  animation: fall 0.8s ease forwards;
+  animation-delay: calc(var(--i) * 0.6s);
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) rotateX(90deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+/* Source: ./src/ui.css */
+.centerbox {
+  display: flex;
+  justify-content: center;
+}
+
+.title{
+    margin-top: 40vh;
+}
+
+.lower{
+    margin-top: 10vh;
+}
+
+
+.nextpage{
+    margin-top: 100vh;
+}
+
+.halfpage{
+    margin-top: 50vh;
+}
+
+.inline{
+  display:inline-block;
+}
+
+.linedown{
+  margin-top: 3vh;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.highish{
+  margin-top: -5vh;
+}
+
+.lowish{
+  margin-top: 2.5vh;
+}
+.smalltext{
+  font-size: 8px;
+}
+.badge{
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 16vw;
+  overflow-x:auto;
+}
+
+.spaced{
+  gap: 12px;
+}
+
+.largefont{
+  font-size: 40px;
+}
+.description{
+  color: rgb(123, 123, 123);
+}
+.symbol-inner{
+  font-size: 18px;
+  color: white;
+}
+
+
+
+
+.title {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  z-index: 1;
+}
+
+

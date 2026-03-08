@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects</title>
+  <style>
+        nav {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav a {
+      color: #00ff00;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #00ff00;
+      bottom: 0;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Courier New', Courier, monospace;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      color: #00ff00;
+      scroll-behavior: smooth;
+    }
+
+    .header {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 2.8em;
+      background: linear-gradient(
+        120deg,
+        #00ff00,
+        #00cc66,
+        #00aa44,
+        #00cc66,
+        #00ff00
+      );
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 1rem;
+    }
+
+    .project {
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 255, 0, 0.2);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      padding: 1.5rem 2rem;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .project h2 {
+      margin-top: 0;
+      font-size: 1.8em;
+      background: linear-gradient(
+        120deg,
+        #00ff00,
+        #00cc66,
+        #00aa44,
+        #00cc66,
+        #00ff00
+      );
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .project-section {
+      margin-top: 10px;
+    }
+
+    .project-section strong {
+      display: inline-block;
+      width: 140px;
+      color: #66ff66;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+    <nav>
+    <a href="/c-site/index.html">About Me</a>
+    <a href="/c-site/projects.html">Projects</a>
+    <a href="/c-site/downloads.html">Downloads</a>
+    <a href="/c-site/contact.html">Contact</a>
+  </nav>
+  <div class="header">My Projects</div>
+  
+  <div class="container">
+    Coming soon
+  </div>
+</body>
+</html>
+

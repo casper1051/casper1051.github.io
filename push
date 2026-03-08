@@ -1,0 +1,13 @@
+#!/bin/bash
+
+git add *
+find . -name ".DS_Store" -type f -delete
+
+cd "shared/css"
+./gencss
+
+cd "$(dirname "$0")"
+read -p "Please enter commit message here:" cmtmsg
+git add .
+git commit -m "Update $(date '+%Y-%m-%d %H:%M:%S'): $cmtmsg"
+git push origin main

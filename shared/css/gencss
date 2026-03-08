@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SOURCE_DIR="./src"
+OUTPUT_FILE="general.css"
+
+> "$OUTPUT_FILE"
+
+echo "Combining files..."
+
+for file in "$SOURCE_DIR"/*.css; do
+    if [ -f "$file" ]; then
+        echo "/* Source: $file */" >> "$OUTPUT_FILE"
+        cat "$file" >> "$OUTPUT_FILE"
+        echo -e "\n" >> "$OUTPUT_FILE"
+        echo "Added $file"
+    fi
+done
+
+echo "Completed."

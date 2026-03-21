@@ -19,6 +19,9 @@
 .halfpage{
     margin-top: 50vh;
 }
+.quarterpage{
+    margin-top: 25vh;
+}
 
 .inline{
   display:inline-block;
@@ -55,6 +58,26 @@
   width: 16vw;
   overflow-x:auto;
 }
+
+.hoverbadge{
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  transition: all 0.8s ease;
+}
+
+.hoverbadge:hover{
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 20px;
+  scale: 105%;
+  border: 1px solid rgba(0,255,255,0.8);
+}
+
 
 .spaced{
   gap: 12px;

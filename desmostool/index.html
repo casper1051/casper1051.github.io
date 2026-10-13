@@ -8,6 +8,8 @@
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+        <script src="https://www.desmos.com/api/v1.12/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6&calculatorType=3d"></script>
+
   <style>
 /* Source: ./src/main.css */
 body {
@@ -249,12 +251,16 @@ body {
 
 
 
-
-.title {
-  position: relative;
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-  z-index: 1;
+#calculator-container {
+    width: 100%;
+    height: 550px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+}
     
   </style>
   
@@ -303,20 +309,20 @@ body {
         <div class="badge-wide inline glass linedown">
             <h2 class="centerbox">The Desmos Trace Tool</h2>
             <br>
-            <div class="centerbox">
-                It's a tool for getting the traces from a Desmos 3D graph. Features sliders, hyperbolic detection, auto-updating, and easy trace reset.
-            </div>
+
             <div class="centerbox">
                 <div class="badge-unlimited inline glass">
-                    <h3 class="centerbox">Installation</h3>
-                    <div class="centerbox">Drag and drop the &nbsp;<a style="text-decoration: none; cursor: default; color: rgb(0, 255, 255);"href="javascript:(function(){try{var s=Calc.getState(),e=s.expressions.list;if(!e||!e.length)return alert('No expressions found!');var t=e[0].latex;if(!t)return alert('No LaTeX found.');function d(l){var c=l.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),z=/(^|[=+\-])z([=+\-]|$)/.test(c)&&!/z2/.test(c),x=/(^|[=+\-])x([=+\-]|$)/.test(c)&&!/x2/.test(c),y=/(^|[=+\-])y([=+\-]|$)/.test(c)&&!/y2/.test(c),xx=/xx|x2/.test(c),yy=/yy|y2/.test(c),zz=/zz|z2/.test(c);return(z&&xx&&yy)||(x&&yy&&zz)||(y&&xx&&zz);}var sd=d(t),z=Date.now(),f='f_'+z,rf='rf_'+z,cm=[{id:'cr_'+z,type:'text',text:'Red: xy (z=a)',folderId:f},{id:'cb_'+z,type:'text',text:'Blue: yz (x=b)',folderId:f},{id:'cg_'+z,type:'text',text:'Green: xz (y=c)',folderId:f}];if(sd)cm.push({id:'ce_'+z,type:'text',text:'Purple: Complementary Hyperbola',folderId:f});var sl=[{id:'sa_'+z,type:'expression',latex:'a=0',folderId:f},{id:'sb_'+z,type:'expression',latex:'b=0',folderId:f},{id:'sc_'+z,type:'expression',latex:'c=0',folderId:f}],tr=[{id:'tr_'+z,type:'expression',latex:t+'\\left\\{z=a\\right\\}',color:'#f00',folderId:f},{id:'tb_'+z,type:'expression',latex:t+'\\left\\{x=b\\right\\}',color:'#00f',folderId:f},{id:'tg_'+z,type:'expression',latex:t+'\\left\\{y=c\\right\\}',color:'#080',folderId:f}];if(sd){var cl=t.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),ex=t+'\\left\\{z=-a\\right\\}';if(/(^|[=+\-])x([=+\-]|$)/.test(cl)&&!/xx|x2/.test(cl))ex=t+'\\left\\{x=-b\\right\\}';else if(/(^|[=+\-])y([=+\-]|$)/.test(cl)&&!/yy|y2/.test(cl))ex=t+'\\left\\{y=-c\\right\\}';tr.push({id:'te_'+z,type:'expression',latex:ex,color:'#800080',folderId:f});}var rh={id:rf,type:'folder',title:'Reset Traces',collapsed:false,hidden:false},fh={id:f,type:'folder',title:'Traces',collapsed:false,hidden:false};s.expressions.list=[e[0],rh,fh].concat(cm,sl,tr,e.slice(1));Calc.setState(s);if(window._ti)clearInterval(window._ti);var l=t,tp=null,pl=t;window._ti=setInterval(function(){try{var cs=Calc.getState(),li=cs.expressions.list;if(!li.some(function(i){return i.id===f;})){var cs2=Calc.getState();cs2.expressions.list=cs2.expressions.list.filter(function(i){return i.id!==rf;});Calc.setState(cs2);return clearInterval(window._ti),window._ti=null;}var ri=li.findIndex(function(i){return i.id===rf;}),rt=false;if(ri===-1){rt=true;var mi=li.findIndex(function(i){return i.id===f;});li.splice(mi,0,{id:rf,type:'folder',title:'Reset Traces',collapsed:false,hidden:false});}else{var it=li[ri];if(it.collapsed||it.hidden)rt=true,it.collapsed=false,it.hidden=false;}if(rt){li.forEach(function(i){if(i.id==='sa_'+z)i.latex='a=0';if(i.id==='sb_'+z)i.latex='b=0';if(i.id==='sc_'+z)i.latex='c=0';});cs.expressions.list=li;Calc.setState(cs);}if(li.length){var ct=li[0];if(ct&&ct.latex&&ct.latex!==pl){pl=ct.latex;clearTimeout(tp);tp=setTimeout(function(){if(pl!==l){l=pl;var as=Calc.getState(),al=as.expressions.list,csd=d(l),hmi=al.some(function(i){return i.id==='ce_'+z;}),hti=al.some(function(i){return i.id==='te_'+z;});if(csd&&!hti){var gci=al.findIndex(function(i){return i.id==='cg_'+z;});if(gci!==-1)al.splice(gci+1,0,{id:'ce_'+z,type:'text',text:'Purple: Complementary Hyperbola',folderId:f});var gti=al.findIndex(function(i){return i.id==='tg_'+z;});if(gti!==-1){var cl=l.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),ex=l+'\\left\\{z=-a\\right\\}';if(/(^|[=+\-])x([=+\-]|$)/.test(cl)&&!/xx|x2/.test(cl))ex=l+'\\left\\{x=-b\\right\\}';else if(/(^|[=+\-])y([=+\-]|$)/.test(cl)&&!/yy|y2/.test(cl))ex=l+'\\left\\{y=-c\\right\\}';al.splice(gti+1,0,{id:'te_'+z,type:'expression',latex:ex,color:'#800080',folderId:f});}}else if(!csd&&hti){al=al.filter(function(i){return i.id!=='ce_'+z&&i.id!=='te_'+z;});}al=al.map(function(i){if(i.id==='tr_'+z)i.latex=l+'\\left\\{z=a\\right\\}';if(i.id==='tb_'+z)i.latex=l+'\\left\\{x=b\\right\\}';if(i.id==='tg_'+z)i.latex=l+'\\left\\{y=c\\right\\}';if(i.id==='te_'+z){var cl=l.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),ex=l+'\\left\\{z=-a\\right\\}';if(/(^|[=+\-])x([=+\-]|$)/.test(cl)&&!/xx|x2/.test(cl))ex=l+'\\left\\{x=-b\\right\\}';else if(/(^|[=+\-])y([=+\-]|$)/.test(cl)&&!/yy|y2/.test(cl))ex=l+'\\left\\{y=-c\\right\\}';i.latex=ex;}return i;});as.expressions.list=al;Calc.setState(as);}},1000);}}}catch(x){clearInterval(window._ti);}},10);}catch(e){alert('Error.');}})();">Trace Tool</a>&nbsp;<-- (that blue text) into your bookmarks bar. Then click it when you need to use it. That's it.</div>
-                    <br><br>
+                    <h3 class="centerbox">Trace Tool</h3>
+                    
+            <div class="centerbox">
+                <div class="badge-unlimited inline glass" style="width: 100%;">
 
-                    <div class="centerbox">
+                    
+                    <div id="calculator-container"></div>
+                    
+                </div>
+            </div>
 
-                    It will only work on a Desmos site, and it's built for the&nbsp;<a style="text-decoration: none; color: rgb(0, 255, 255);"href="https://desmos.com/3d">3D calculator</a>.
-
-                    </div>
 
                     <br>
 
@@ -411,6 +417,153 @@ body {
         </div>
 
     </div>
+
+        <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            try {
+                var elt = document.getElementById('calculator-container');
+                var Calc = Desmos.Calculator3D(elt);
+
+                Calc.setExpression({ id: 'ex1', latex: 'z = x^2 - y^2' });
+
+                var s = Calc.getState(), e = s.expressions.list;
+                if (!e || !e.length) return;
+                
+                var t = e[0].latex;
+                if (!t) return;
+
+                function d(l) {
+                    var c = l.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),
+                        z = /(^|[=+\-])z([=+\-]|$)/.test(c) && !/z2/.test(c),
+                        x = /(^|[=+\-])x([=+\-]|$)/.test(c) && !/x2/.test(c),
+                        y = /(^|[=+\-])y([=+\-]|$)/.test(c) && !/y2/.test(c),
+                        xx = /xx|x2/.test(c), yy = /yy|y2/.test(c), zz = /zz|z2/.test(c);
+                    return (z && xx && yy) || (x && yy && zz) || (y && xx && zz);
+                }
+
+                var sd = d(t), z = Date.now(), f = 'f_'+z, rf = 'rf_'+z,
+                    cm = [
+                        {id:'cr_'+z, type:'text', text:'Red: xy (z=a)', folderId:f},
+                        {id:'cb_'+z, type:'text', text:'Blue: yz (x=b)', folderId:f},
+                        {id:'cg_'+z, type:'text', text:'Green: xz (y=c)', folderId:f}
+                    ];
+                
+                if(sd) cm.push({id:'ce_'+z, type:'text', text:'Purple: Complementary Hyperbola', folderId:f});
+
+                var sl = [
+                        {id:'sa_'+z, type:'expression', latex:'a=0', folderId:f},
+                        {id:'sb_'+z, type:'expression', latex:'b=0', folderId:f},
+                        {id:'sc_'+z, type:'expression', latex:'c=0', folderId:f}
+                    ],
+                    tr = [
+                        {id:'tr_'+z, type:'expression', latex:t+'\\left\\{z=a\\right\\}', color:'#f00', folderId:f},
+                        {id:'tb_'+z, type:'expression', latex:t+'\\left\\{x=b\\right\\}', color:'#00f', folderId:f},
+                        {id:'tg_'+z, type:'expression', latex:t+'\\left\\{y=c\\right\\}', color:'#080', folderId:f}
+                    ];
+
+                if(sd) {
+                    var cl = t.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),
+                        ex = t+'\\left\\{z=-a\\right\\}';
+                    if(/(^|[=+\-])x([=+\-]|$)/.test(cl) && !/xx|x2/.test(cl)) ex = t+'\\left\\{x=-b\\right\\}';
+                    else if(/(^|[=+\-])y([=+\-]|$)/.test(cl) && !/yy|y2/.test(cl)) ex = t+'\\left\\{y=-c\\right\\}';
+                    tr.push({id:'te_'+z, type:'expression', latex:ex, color:'#800080', folderId:f});
+                }
+
+                var rh = {id:rf, type:'folder', title:'Reset Traces', collapsed:false, hidden:false},
+                    fh = {id:f, type:'folder', title:'Traces', collapsed:false, hidden:false};
+
+                s.expressions.list = [e[0], rh, fh].concat(cm, sl, tr, e.slice(1));
+                Calc.setState(s);
+
+                if(window._ti) clearInterval(window._ti);
+                var l = t, tp = null, pl = t;
+                
+                window._ti = setInterval(function() {
+                    try {
+                        var cs = Calc.getState(), li = cs.expressions.list;
+                        if(!li.some(function(i){ return i.id === f; })) {
+                            var cs2 = Calc.getState();
+                            cs2.expressions.list = cs2.expressions.list.filter(function(i){ return i.id !== rf; });
+                            Calc.setState(cs2);
+                            return clearInterval(window._ti), window._ti = null;
+                        }
+                        
+                        var ri = li.findIndex(function(i){ return i.id === rf; }), rt = false;
+                        if(ri === -1) {
+                            rt = true;
+                            var mi = li.findIndex(function(i){ return i.id === f; });
+                            li.splice(mi, 0, {id:rf, type:'folder', title:'Reset Traces', collapsed:false, hidden:false});
+                        } else {
+                            var it = li[ri];
+                            if(it.collapsed || it.hidden) rt = true, it.collapsed = false, it.hidden = false;
+                        }
+                        
+                        if(rt) {
+                            li.forEach(function(i){
+                                if(i.id === 'sa_'+z) i.latex = 'a=0';
+                                if(i.id === 'sb_'+z) i.latex = 'b=0';
+                                if(i.id === 'sc_'+z) i.latex = 'c=0';
+                            });
+                            cs.expressions.list = li;
+                            Calc.setState(cs);
+                        }
+                        
+                        if(li.length) {
+                            var ct = li[0];
+                            if(ct && ct.latex && ct.latex !== pl) {
+                                pl = ct.latex;
+                                clearTimeout(tp);
+                                tp = setTimeout(function() {
+                                    if(pl !== l) {
+                                        l = pl;
+                                        var as = Calc.getState(), al = as.expressions.list,
+                                            csd = d(l),
+                                            hmi = al.some(function(i){ return i.id === 'ce_'+z; }),
+                                            hti = al.some(function(i){ return i.id === 'te_'+z; });
+                                            
+                                        if(csd && !hti) {
+                                            var gci = al.findIndex(function(i){ return i.id === 'cg_'+z; });
+                                            if(gci !== -1) al.splice(gci + 1, 0, {id:'ce_'+z, type:'text', text:'Purple: Complementary Hyperbola', folderId:f});
+                                            var gti = al.findIndex(function(i){ return i.id === 'tg_'+z; });
+                                            if(gti !== -1) {
+                                                var cl = l.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),
+                                                    ex = l+'\\left\\{z=-a\\right\\}';
+                                                if(/(^|[=+\-])x([=+\-]|$)/.test(cl) && !/xx|x2/.test(cl)) ex = l+'\\left\\{x=-b\\right\\}';
+                                                else if(/(^|[=+\-])y([=+\-]|$)/.test(cl) && !/yy|y2/.test(cl)) ex = l+'\\left\\{y=-c\\right\\}';
+                                                al.splice(gti + 1, 0, {id:'te_'+z, type:'expression', latex:ex, color:'#800080', folderId:f});
+                                            }
+                                        } else if(!csd && hti) {
+                                            al = al.filter(function(i){ return i.id !== 'ce_'+z && i.id !== 'te_'+z; });
+                                        }
+                                        
+                                        al = al.map(function(i){
+                                            if(i.id === 'tr_'+z) i.latex = l + '\\left\\{z=a\\right\\}';
+                                            if(i.id === 'tb_'+z) i.latex = l + '\\left\\{x=b\\right\\}';
+                                            if(i.id === 'tg_'+z) i.latex = l + '\\left\\{y=c\\right\\}';
+                                            if(i.id === 'te_'+z) {
+                                                var cl = l.replace(/\s+/g,'').replace(/[\{\}]/g,'').replace(/\^([0-9.]+)/g,'$1'),
+                                                    ex = l + '\\left\\{z=-a\\right\\}';
+                                                if(/(^|[=+\-])x([=+\-]|$)/.test(cl) && !/xx|x2/.test(cl)) ex = l + '\\left\\{x=-b\\right\\}';
+                                                else if(/(^|[=+\-])y([=+\-]|$)/.test(cl) && !/yy|y2/.test(cl)) ex = l + '\\left\\{y=-c\\right\\}';
+                                                i.latex = ex;
+                                            }
+                                            return i;
+                                        });
+                                        as.expressions.list = al;
+                                        Calc.setState(as);
+                                    }
+                                }, 1000);
+                            }
+                        }
+                    } catch(x) {
+                        if(window._ti) clearInterval(window._ti);
+                    }
+                }, 10);
+            } catch(err) {
+                console.error("Desmos trace initialization error:", err);
+            }
+        });
+    </script>
 
     <div class="centerbox halfpage smalltext">
         © 2026 casper1051. All rights reserved.
